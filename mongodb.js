@@ -101,6 +101,29 @@ const randomSurname = async () => {
   return result[0]?.Surname || "Sukunimi";
 };
 
+const countUserData = async () => {
+  const dataCol = await connDbCollection("data");
+
+  return sendQuery(
+    dataCol.aggregate([
+      {
+        $group: {
+          _id: "$userid",
+          userRecordCount: { $sum: 1 },
+        },
+      },
+      {
+        $project: {
+          _id: 0,
+          username: "$_id",
+          userRecordCount: 1,
+        },
+      },
+    ]),
+    true
+  );
+};
+
 const addRows = async ({ RowAmount }) => {
   let i = 0;
   const dataCol = await connDbCollection("data");
