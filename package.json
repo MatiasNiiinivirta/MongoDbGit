@@ -13,7 +13,8 @@
   "type": "module",
   "dependencies": {
     "express": "^4.21.1",
-    "mariadb": "^3.4.0"
+    "mariadb": "^3.4.0",
+    "mongodb": "^6.16.0"
   },
   "devDependencies": {
     "cors": "^2.8.5",
